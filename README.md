@@ -1,2 +1,2 @@
 # Shooter-Group-Project
-DIG3480 Unity Group Project with Daniel and Kit
+DIG3480 - Unity Project with Daniel Barberis and Kit Griswold
