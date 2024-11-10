@@ -20,4 +20,19 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    private void OnTriggerEnter2D(Collider2D whatIHit)
+    {
+        if (whatIHit.tag == "Player")
+        {
+            whatIHit.GetComponent<Player>().PlayerLives();
+            Destroy(this.gameObject);
+        }
+        else if (whatIHit.tag == "Weapon")
+            {
+                Destroy(whatIHit.gameObject);
+                Destroy(this.gameObject);
+                // Add Score here
+            }
+      
+    }
 }

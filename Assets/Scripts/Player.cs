@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -9,18 +11,24 @@ public class Player : MonoBehaviour
     // its name: speed, playerSpeed --- Speed, PlayerSpeed
     // optional: give it an initial value
     private float speed;
-    private int lives = 3;
+    public int lives;
     private int score = 0;
     private float horizontalInput;
     private float verticalInput;
 
     public GameObject bullet;
 
+    public TextMeshProUGUI livesText;
+
     // Start is called before the first frame update
     void Start()
     {
         speed = 5f;
+        lives = 3;
         transform.position = new Vector3(0, -3, 0);
+
+        livesText = FindObjectOfType<TextMeshProUGUI>();
+        livesText.text = "Lives: " + lives.ToString();
     }
 
     // Update is called once per frame
@@ -65,5 +73,15 @@ public class Player : MonoBehaviour
             Instantiate(bullet, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
         }
     }
-
+    
+    public void PlayerLives()
+    {
+        lives -= 1;
+        livesText.text = "Lives: " + lives.ToString();
+        if(lives < 1)
+        {
+            livesText.text = "Lives: " + lives.ToString();
+            Destroy(this.gameObject);
+        }
+    }
 }
