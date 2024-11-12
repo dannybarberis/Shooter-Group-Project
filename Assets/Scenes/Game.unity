@@ -510,6 +510,7 @@ MonoBehaviour:
   player: {fileID: 1954329545077158988, guid: 4d42f934058dfc7449e5f5c692acd9b3, type: 3}
   enemy: {fileID: 8835977995716492249, guid: fecd1607dc756ef4895c896d60883c7d, type: 3}
   enemy2: {fileID: 2016489581918296066, guid: 12ae630bb8acb9f47be4ae12e76cfd68, type: 3}
+  coin: {fileID: 1177401006891764034, guid: 6c23827e816ad894b961dffb0340ab41, type: 3}
 --- !u!4 &2068399766
 Transform:
   m_ObjectHideFlags: 0

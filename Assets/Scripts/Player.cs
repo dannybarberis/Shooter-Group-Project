@@ -12,23 +12,28 @@ public class Player : MonoBehaviour
     // optional: give it an initial value
     private float speed;
     public int lives;
-    private int score = 0;
+    public int score;
     private float horizontalInput;
     private float verticalInput;
 
     public GameObject bullet;
 
     public TextMeshProUGUI livesText;
+    // public TextMeshProUGUI scoreText;
 
     // Start is called before the first frame update
     void Start()
     {
         speed = 5f;
         lives = 3;
+       // score = 0;
         transform.position = new Vector3(0, -3, 0);
 
         livesText = FindObjectOfType<TextMeshProUGUI>();
         livesText.text = "Lives: " + lives.ToString();
+
+      //  scoreText = FindObjectOfType<TextMeshProUGUI>();
+      //  scoreText.text = "Score: " + score.ToString();
     }
 
     // Update is called once per frame
@@ -84,4 +89,10 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    //public void CoinGrab()
+    //{
+      //score += 1;
+      //Debug.Log("Score: "+ score);
+    //}
 }
