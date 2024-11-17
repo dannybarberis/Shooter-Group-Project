@@ -19,19 +19,22 @@ public class enemy2 : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    private void OnTriggerEnter2D(Collider2D whatIHit)
+   private void OnTriggerEnter2D(Collider2D whatIHit)
     {
-        if (whatIHit.tag == "Player")
+        if (whatIHit.CompareTag("Player"))
         {
-            whatIHit.GetComponent<Player>().PlayerLives();
-            Destroy(this.gameObject);
-        }
-        else if (whatIHit.tag == "Weapon")
+            Player player = whatIHit.GetComponent<Player>();
+            if(!player.isInvincible)
             {
-                Destroy(whatIHit.gameObject);
+                player.PlayerLives();
                 Destroy(this.gameObject);
-                // Add Score here
             }
+            else
+            {
+                Destroy(this.gameObject);
+                player.AddPoints();
+            }
+        }
       
     }
 }

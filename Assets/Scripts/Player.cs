@@ -6,34 +6,39 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
-    // its access level: public or private
-    // its type: int (5, 8, 36, etc.), float (2.5f, 3.7f, etc.)
-    // its name: speed, playerSpeed --- Speed, PlayerSpeed
-    // optional: give it an initial value
     private float speed;
-    public int lives;
-    public int score;
+    private int lives;
+    private int score;
     private float horizontalInput;
     private float verticalInput;
+    private float timer;
 
     public GameObject bullet;
 
     public TextMeshProUGUI livesText;
-    // public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI powerText;
+    public TextMeshProUGUI gameoverText;
+
+    public bool isInvincible = false;
 
     // Start is called before the first frame update
     void Start()
     {
         speed = 5f;
         lives = 3;
-       // score = 0;
+        score = 0;
         transform.position = new Vector3(0, -3, 0);
-
-        livesText = FindObjectOfType<TextMeshProUGUI>();
+        
+        livesText = GameObject.Find("Canvas/Lives").GetComponent<TextMeshProUGUI>();
         livesText.text = "Lives: " + lives.ToString();
 
-      //  scoreText = FindObjectOfType<TextMeshProUGUI>();
-      //  scoreText.text = "Score: " + score.ToString();
+        scoreText = GameObject.Find("Canvas/Score").GetComponent<TextMeshProUGUI>();
+        scoreText.text = "Score: " + score.ToString();
+
+        powerText = GameObject.Find("Canvas/PowerUp").GetComponent<TextMeshProUGUI>();
+
+        gameoverText = GameObject.Find("Canvas/GameOver").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -87,12 +92,38 @@ public class Player : MonoBehaviour
         {
             livesText.text = "Lives: " + lives.ToString();
             Destroy(this.gameObject);
+            GameOver();
         }
     }
 
-    //public void CoinGrab()
-    //{
-      //score += 1;
-      //Debug.Log("Score: "+ score);
-    //}
+    public void AddPoints()
+    {
+      score += 5;
+      scoreText.text = "Score: " + score.ToString();
+    }
+    public void Shield()
+    {
+        StartCoroutine(ShieldTimer());
+    }
+    private IEnumerator ShieldTimer()
+    {
+        float duration = 6f;
+        float timer = 0f;
+        isInvincible = true;
+        powerText.text = "Shield Active";
+        while(timer < duration)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        powerText.text = "";
+        isInvincible = false;
+    }
+    public void GameOver()
+    {
+        livesText.text = "";
+        scoreText.text = "";
+        powerText.text = "";
+        gameoverText.text = "GAME OVER";
+    }
 }

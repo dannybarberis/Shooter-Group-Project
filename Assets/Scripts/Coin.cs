@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Coin : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class Coin : MonoBehaviour
     {
         //start timer when coin spawns
         timer = timeToDisappear;
+
 
     }
 
@@ -38,13 +41,11 @@ public class Coin : MonoBehaviour
     // Method to handle when the player collects the object
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) // check if the player is the one that collided with the object
+        if (other.tag == "Player") // check if the player is the one that collided with the object
         {
-            Debug.Log("Player collected the coin!");
-
-            // Set the object as collected and destroy it immediately
-            isCollected = true;
             Destroy(this.gameObject);
+            isCollected = true;
+            other.GetComponent<Player>().AddPoints();
         }
 
     }

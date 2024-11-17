@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class gameManager : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class gameManager : MonoBehaviour
     public GameObject enemy;
     public GameObject enemy2;
     public GameObject coin;
+    public GameObject powerup;
 
 
     // Start is called before the first frame update
@@ -17,6 +20,7 @@ public class gameManager : MonoBehaviour
         InvokeRepeating("CreateEnemy", 1f, 2f);
         InvokeRepeating("CreateEnemy2", 1f, 3f);
         InvokeRepeating("CreateCoin", 1f, 4f);
+        InvokeRepeating("CreatePowerUp", 6f, 8f);
     }
 
     // Update is called once per frame
@@ -37,6 +41,11 @@ public class gameManager : MonoBehaviour
     void CreateCoin()
     {
         Instantiate(coin, new Vector3(Random.Range(-9f, 9f), 9f, 0),
+        Quaternion.identity);
+    }
+    void CreatePowerUp()
+    {
+        Instantiate(powerup, new Vector3(Random.Range(-9f, 9f), 9f, 0),
         Quaternion.identity);
     }
 }

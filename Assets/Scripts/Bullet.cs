@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    private Player player;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,4 +22,25 @@ public class Bullet : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    
+    private void OnTriggerEnter2D(Collider2D whatIHit)
+    {
+        if (whatIHit.CompareTag("Enemy"))
+        {
+            GameObject playerObject = GameObject.FindWithTag("Player");
+
+        if (playerObject != null)
+        {
+            Player player = playerObject.GetComponent<Player>();
+            if (player != null)
+            {
+                player.AddPoints();
+            }
+        }
+
+        Destroy(whatIHit.gameObject); 
+        Destroy(this.gameObject);     
+        }
+    }
+
 }
