@@ -12,6 +12,9 @@ public class gameManager : MonoBehaviour
     public GameObject coin;
     public GameObject powerup;
 
+    public AudioClip powerUp;
+    public AudioClip powerDown;
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,5 +50,13 @@ public class gameManager : MonoBehaviour
     {
         Instantiate(powerup, new Vector3(Random.Range(-9f, 9f), 9f, 0),
         Quaternion.identity);
+    }
+    public void PlayPowerUp()
+    {
+        AudioSource.PlayClipAtPoint(powerUp, Camera.main.transform.position);
+    }
+    public void PlayPowerDown()
+    {
+        AudioSource.PlayClipAtPoint(powerDown, Camera.main.transform.position);
     }
 }

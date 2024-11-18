@@ -34,6 +34,9 @@ public class PowerUp : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            gameManager gm = FindObjectOfType<gameManager>();
+            gm?.PlayPowerUp();
+
             isCollected = true;
             Destroy(this.gameObject);
             other.GetComponent<Player>().Shield();

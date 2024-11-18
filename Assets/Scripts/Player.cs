@@ -118,6 +118,10 @@ public class Player : MonoBehaviour
         }
         powerText.text = "";
         isInvincible = false;
+
+        // Play the PowerDown sound via the gameManager
+        gameManager gm = FindObjectOfType<gameManager>();
+        gm?.PlayPowerDown();
     }
     public void GameOver()
     {
